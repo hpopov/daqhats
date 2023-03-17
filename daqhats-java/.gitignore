@@ -1,0 +1,5 @@
+target
+
+jni/*.o
+jni/*.dll
+jni/*.so

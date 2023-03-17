@@ -1,0 +1,6 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.format.settings.url": "daqhats-java/StartledFrog-profile.xml",
+    "editor.formatOnSave": true,
+}

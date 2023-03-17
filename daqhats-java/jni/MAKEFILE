@@ -1,0 +1,16 @@
+#!/bin/sh
+.PHONY: all-windows all-linux
+
+all-windows: nativevolumecalculator.dll
+all-linux: nativevolumecalculator.so
+
+com_github_hpopov_daqhats_JavaServer.o: com_github_hpopov_daqhats_JavaServer.cpp
+	g++ -c -fPIC -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/win32 com_github_hpopov_daqhats_JavaServer.cpp -o com_github_hpopov_daqhats_JavaServer.o
+
+# Building Linux library
+nativevolumecalculator.so: com_github_hpopov_daqhats_JavaServer.o
+	g++ -shared -fPIC -o nativevolumecalculator.so com_github_hpopov_daqhats_JavaServer.o -lc
+
+# Building Windows library
+nativevolumecalculator.dll: com_github_hpopov_daqhats_JavaServer.o
+	g++ -shared -fPIC -o nativevolumecalculator.dll com_github_hpopov_daqhats_JavaServer.o -Wl,--add-stdcall-alias
