@@ -22,13 +22,15 @@ JNIEXPORT jintArray JNICALL Java_com_github_hpopov_daqhats_TCHatId_findConnected
         // Get the list of HAT devices.
         hat_list(HAT_ID_MCC_134, hats);
 
-        jint *arr = new jint(hat_count);
+        jint *arr = new jint[hat_count];
         for (int i = 0; i < hat_count; i++)
         {
             arr[i] = hats[i].address;
         }
-        env->SetIntArrayRegion(addresses, 0, 5, arr);
+        env->SetIntArrayRegion(addresses, 0, hat_count, arr);
+        delete arr;
     }
 
+    delete hats;
     return addresses;
 }
