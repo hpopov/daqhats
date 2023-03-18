@@ -1,7 +1,7 @@
 LIB_DIR = ../lib
 CFLAGS = -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/win32 -I$(JAVA_HOME)/include/linux -I/usr/local/include -I./
 LIBS = -ldaqhats
-INSTALL_DIR = /usr/local/lib
+INSTALL_DIR = /usr/lib
 TARGET_LIB = libdaqhats-java.so
 TARGET_TEST_LIB = daqhats-java.dll
 

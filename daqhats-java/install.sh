@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ "$(id -u)" != "0" ]; then
-   echo "This script must be run as root, i.e 'sudo ./install.sh'" 1>&2
-   exit 1
-fi
-
 # Installing JNI shared library
 echo "Building and installing Java library"
 echo
 make -C jni all
-make -C jni install
+sudo make -C jni install
 make -C jni clean
 echo
 

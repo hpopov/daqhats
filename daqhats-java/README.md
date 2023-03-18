@@ -45,7 +45,7 @@ To use the library in your local Java Maven project, just add the following depe
     <dependency>
       <groupId>com.github.hpopov.daqhats</groupId>
       <artifactId>daqhats-java</artifactId>
-      <version>1.0</version>
+      <version>1.0.1</version>
     </dependency>
 ```
 
