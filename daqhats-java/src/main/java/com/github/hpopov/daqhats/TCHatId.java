@@ -27,4 +27,8 @@ public class TCHatId {
     private TCHatId(int address) {
         this.address = address;
     }
+
+    public int getAddress() {
+        return address;
+    }
 }
