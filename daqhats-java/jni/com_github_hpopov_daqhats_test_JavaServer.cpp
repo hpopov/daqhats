@@ -1,8 +1,8 @@
-#include "com_github_hpopov_daqhats_JavaServer.h"
+#include "com_github_hpopov_daqhats_test_JavaServer.h"
 #include "string.h"
 #include "stdlib.h"
 
-JNIEXPORT jobject JNICALL JNICALL Java_com_github_hpopov_daqhats_JavaServer_calculatevolume_1in_1cplusplus(
+JNIEXPORT jobject JNICALL JNICALL Java_com_github_hpopov_daqhats_test_JavaServer_calculatevolume_1in_1cplusplus(
     JNIEnv *env, jobject obj, jobject input)
 {
     printf("C -> Calculate Volume called\n"); // Get the Input data
@@ -27,7 +27,7 @@ JNIEXPORT jobject JNICALL JNICALL Java_com_github_hpopov_daqhats_JavaServer_calc
     const char *cshape = env->GetStringUTFChars(shape, &iscopy);
     printf("Shape is %s\n", cshape); // Create return object
     jclass responseDataClass =
-        env->FindClass("com/github/hpopov/daqhats/ResponseData");
+        env->FindClass("com/github/hpopov/daqhats/test/ResponseData");
     jobject responseData = env->AllocObject(responseDataClass); // Get the method Ids to be set
     jmethodID methodSetVolume = env->GetMethodID(responseDataClass, "setVolume", "(D)V");
     if (methodSetVolume == NULL)

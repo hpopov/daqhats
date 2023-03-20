@@ -1,4 +1,4 @@
-package com.github.hpopov.daqhats;
+package com.github.hpopov.daqhats.test;
 
 public class RequestData {
 
