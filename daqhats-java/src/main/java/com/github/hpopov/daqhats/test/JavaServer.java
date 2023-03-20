@@ -12,7 +12,7 @@ public class JavaServer {
     }
 
     static {
-        System.loadLibrary("nativevolumecalculator");
+        System.loadLibrary("daqhats-java");
     }
 
     public JavaServer() {

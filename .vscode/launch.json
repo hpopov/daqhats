@@ -6,9 +6,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Current File JNI",
+            "name": "JavaServer",
             "request": "launch",
-            "mainClass": "${file}",
+            "mainClass": "com.github.hpopov.daqhats.test.JavaServer",
             "vmArgs": "-Djava.library.path=${workspaceFolder}/daqhats-java/jni"
         }
     ]
