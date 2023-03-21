@@ -11,7 +11,7 @@ public class ThermoCoupleHat {
             // address
         }
         for (int i = 0; i < channelAmount; i++) {
-            setThermoCoupleType(i, defaultThermoCoupleType.typeCode);
+            setMcc134ThermoCoupleType(i, defaultThermoCoupleType.typeCode);
         }
         return new ThermoCoupleHat(id, channelAmount, defaultThermoCoupleType);
     }
@@ -26,9 +26,18 @@ public class ThermoCoupleHat {
     private static native int openConnectionWithHat(int address);
 
     /**
-     * @return <code>false</code> if operation was not successful
+     * @return <b>false</b> if operation was not successful
      */
-    private static native boolean setThermoCoupleType(int channel, int tcTypeCode);
+    private static native boolean setMcc134ThermoCoupleType(int channel, int tcTypeCode);
+
+    /**
+     * Reads ThermoCouple value by <code>address</code> and <code>channel</code>
+     * 
+     * @param address
+     * @param channel
+     * @return <b>null</b> if operation was not successful
+     */
+    private static native ThermoCoupleValue readMcc134ThermoCoupleValue(int address, int channel);
 
     private final TCHatId id;
     private final ThermoCoupleType[] thermoCoupleTypeByChannel;
@@ -38,6 +47,36 @@ public class ThermoCoupleHat {
 
         this.thermoCoupleTypeByChannel = new ThermoCoupleType[channelAmount];
         Arrays.fill(thermoCoupleTypeByChannel, defaultThermoCoupleType);
+    }
+
+    public void setThermoCoupleType(int channel, ThermoCoupleType thermoCoupleType) {
+        verifyChannelIsValid(channel);
+        if (thermoCoupleTypeByChannel[channel].equals(thermoCoupleType)) {
+            // Log some message? channel is already initialized with
+            // {thermoCoupleType}
+        } else {
+            boolean successful = setMcc134ThermoCoupleType(channel, thermoCoupleType.typeCode);
+            if (!successful) {
+                // Throw some exception: unable to initialize {channel} with
+                // {thermoCoupleType}
+            }
+        }
+    }
+
+    public ThermoCoupleValue readThermoCoupleValue(int channel) {
+        verifyChannelIsValid(channel);
+        ThermoCoupleValue value = readMcc134ThermoCoupleValue(id.getAddress(), channel);
+        if (value == null) {
+            // Throw some exception: unable to read value from {id} and
+            // {channel}
+        }
+        return value;
+    }
+
+    private void verifyChannelIsValid(int channel) {
+        if (channel >= getChannelAmount()) {
+            // Throw some exception: invalid channel
+        }
     }
 
     private int getChannelAmount() {
