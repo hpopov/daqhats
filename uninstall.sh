@@ -46,6 +46,9 @@ if [ "$num" -ne 0 ]; then
     echo
 fi
 
-./daqhats-java/uninstall.sh
+CUR_DIR=$(pwd)
+cd daqhats-java
+./uninstall.sh
+cd $CUR_DIR
 
 echo "Uninstall complete. Remove this folder to completely remove daqhats."

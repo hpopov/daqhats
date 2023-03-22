@@ -79,27 +79,6 @@
           </compilerArgs>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>3.1.0</version>
-        <executions>
-          <execution>
-            <phase>install</phase>
-            <goals>
-              <goal>exec</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <executable>make</executable>
-          <workingDirectory>${basedir}/jni</workingDirectory>
-          <arguments>
-            <argument>install</argument>
-          </arguments>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 </project>

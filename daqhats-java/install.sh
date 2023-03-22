@@ -8,7 +8,7 @@ fi
 echo "Building and installing Java library"
 echo
 make -C jni all
-mvn clean install
+make -C jni install
 make -C jni clean
 echo
 echo "Java lib installation completed successfully"
