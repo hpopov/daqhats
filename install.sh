@@ -42,4 +42,13 @@ if [ $(raspi-config nonint get_spi) -eq 1 ]; then
    raspi-config nonint do_spi 0
 fi
 
+echo -n "Do you want to install Java library (Maven must be preinstalled)? [y/n] "
+read input
+if [ "$input" == "y" ]; then
+   ./daqhats-java/install.sh
+else
+   echo "Java lib installation skipped."
+   echo "You can install Java library manually later by executing install.sh from daqhats-java directory"
+fi
+
 echo "Install complete"

@@ -7,7 +7,7 @@
 
   <groupId>com.github.hpopov.daqhats</groupId>
   <artifactId>daqhats-java</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>daqhats-java</name>
   <url>https://github.com/hpopov/daqhats</url>
@@ -77,6 +77,27 @@
             <arg>-h</arg>
             <arg>jni</arg>
           </compilerArgs>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>make</executable>
+          <workingDirectory>${basedir}/jni</workingDirectory>
+          <arguments>
+            <argument>install</argument>
+          </arguments>
         </configuration>
       </plugin>
     </plugins>
