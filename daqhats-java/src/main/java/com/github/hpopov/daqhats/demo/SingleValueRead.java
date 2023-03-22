@@ -12,10 +12,11 @@ public class SingleValueRead {
 
     public static void main(String[] args) throws InterruptedException, IOException {
         ThermoCoupleType thermoCoupleType = ThermoCoupleType.J;
-        long millieSecondsBetweenReads = 1000;
+        long milliSecondsBetweenReads = 1000;
 
         System.out.println("\nMCC 134 single data value read example");
         System.out.println("    Function demonstrated: mcc134_t_in_read");
+        System.out.println("    Thermocouple type: " + thermoCoupleType);
         TCHatId[] connectedHatIds = TCHatId.findConnectedHats();
         if (connectedHatIds.length == 0) {
             System.out.println("No connected Hats found. Exiting now...");
@@ -28,7 +29,6 @@ public class SingleValueRead {
             int lowestChannel = hat.getLowestChannel();
             int highestChannel = hat.getHighestChannel();
             System.out.println(String.format("    Channels: %d - %d", lowestChannel, highestChannel));
-            System.out.println(String.format("    Thermocouple type: %s", thermoCoupleType));
 
             System.out.println("\nPress any key to continue");
 
@@ -51,10 +51,10 @@ public class SingleValueRead {
                 // Read a single value from each selected channel
                 for (int channel = lowestChannel; channel <= highestChannel; channel++) {
                     ThermoCoupleValue value = hat.readThermoCoupleValue(channel);
-                    System.out.println("\t" + value.getStringValue());
+                    System.out.println("\t" + value.getValue());
                 }
 
-                TimeUnit.MILLISECONDS.sleep(millieSecondsBetweenReads);
+                TimeUnit.MILLISECONDS.sleep(milliSecondsBetweenReads);
             }
         }
     }

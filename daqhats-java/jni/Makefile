@@ -12,7 +12,7 @@ all-win-debug: clean daqhats-java.dll
 	g++ -c -fPIC -o $@ $< $(CFLAGS)
 
 # Building Raspberry PI real library
-libdaqhats-java.so: com_github_hpopov_daqhats_TCHatId.o
+libdaqhats-java.so: com_github_hpopov_daqhats_TCHatId.o com_github_hpopov_daqhats_ThermoCoupleHat.o
 	g++ -shared -fPIC -o $@ $^ -lc $(LIBS)
 
 # Building Windows test library
