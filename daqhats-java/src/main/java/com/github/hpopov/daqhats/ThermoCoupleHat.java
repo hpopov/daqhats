@@ -2,13 +2,12 @@ package com.github.hpopov.daqhats;
 
 import java.util.Arrays;
 
-public class ThermoCoupleHat {
+public class ThermoCoupleHat implements AutoCloseable {
 
     public static ThermoCoupleHat open(TCHatId id, ThermoCoupleType defaultThermoCoupleType) {
-        int channelAmount = openConnectionWithHat(id.getAddress());
+        int channelAmount = openConnectionWithMcc134Hat(id.getAddress());
         if (channelAmount < 0) {
-            // Throw some exception: unable to open a connection with Hat by
-            // address
+            throw new RuntimeException("unable to open a connection with Hat by address " + id.getAddress());
         }
         for (int i = 0; i < channelAmount; i++) {
             setMcc134ThermoCoupleType(i, defaultThermoCoupleType.typeCode);
@@ -23,7 +22,7 @@ public class ThermoCoupleHat {
      * @return amount of channels available for this Hat or <b>-1</b> if
      *         operation was not successful
      */
-    private static native int openConnectionWithHat(int address);
+    private static native int openConnectionWithMcc134Hat(int address);
 
     /**
      * @return <b>false</b> if operation was not successful
@@ -38,6 +37,14 @@ public class ThermoCoupleHat {
      * @return <b>null</b> if operation was not successful
      */
     private static native ThermoCoupleValue readMcc134ThermoCoupleValue(int address, int channel);
+
+    /**
+     * Closes the connection with Hat by specified address.
+     * 
+     * @param address
+     * @return <b>false</b> if operation was not successful
+     */
+    private static native boolean closeConnectionWithMcc134Hat(int address);
 
     private final TCHatId id;
     private final ThermoCoupleType[] thermoCoupleTypeByChannel;
@@ -71,6 +78,22 @@ public class ThermoCoupleHat {
             // {channel}
         }
         return value;
+    }
+
+    public int getLowestChannel() {
+        return 0;
+    }
+
+    public int getHighestChannel() {
+        return getChannelAmount() - 1;
+    }
+
+    @Override
+    public void close() {
+        if (!closeConnectionWithMcc134Hat(id.getAddress())) {
+            // Throw some exception: unable to open a connection with Hat by
+            // address
+        }
     }
 
     private void verifyChannelIsValid(int channel) {
