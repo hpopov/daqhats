@@ -1,6 +1,6 @@
 package com.github.hpopov.daqhats.test;
 
-public class JavaServer {
+class JavaServer {
 
     public static void main(String[] args) {
         JavaServer client = new JavaServer();

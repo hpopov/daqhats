@@ -1,6 +1,6 @@
 package com.github.hpopov.daqhats.test;
 
-public class RequestData {
+class RequestData {
 
     private int radius;
 

@@ -1,6 +1,6 @@
 package com.github.hpopov.daqhats.test;
 
-public class ResponseData {
+class ResponseData {
 
     private double volume;
 
