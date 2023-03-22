@@ -53,7 +53,12 @@ JNIEXPORT jobject JNICALL Java_com_github_hpopov_daqhats_ThermoCoupleHat_readMcc
 
     jclass ThermoCoupleValueClass = env->FindClass("com/github/hpopov/daqhats/ThermoCoupleValue");
     jmethodID thermoCoupleValueConstructor = env->GetMethodID(ThermoCoupleValueClass, "<init>", "(DLjava/lang/String;)V");
-    return env->NewObject(ThermoCoupleValueClass, thermoCoupleValueConstructor, temperature, value);
+    jobject result = env->NewObject(ThermoCoupleValueClass, thermoCoupleValueConstructor, temperature, value);
+    if (value != NULL)
+    {
+        env->DeleteLocalRef(value);
+    }
+    return result
 }
 
 JNIEXPORT jboolean JNICALL Java_com_github_hpopov_daqhats_ThermoCoupleHat_closeConnectionWithMcc134Hat(JNIEnv *env, jclass ThermoCoupleHatClass, jint address)
