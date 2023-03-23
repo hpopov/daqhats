@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Mcc134SingleValueRead",
+            "request": "launch",
+            "mainClass": "com.github.hpopov.daqhats.demo.Mcc134SingleValueRead",
+            "projectName": "daqhats-java-examples"
+        },
+        {
+            "type": "java",
             "name": "JavaServer",
             "request": "launch",
             "mainClass": "com.github.hpopov.daqhats.test.JavaServer",

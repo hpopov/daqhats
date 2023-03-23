@@ -2,9 +2,9 @@
 
 Currently it is only a PoC of wrapping C++ code with JNI for interaction with MCC134 Hats.
 
-## Installation
+## On Raspberry PI
 
-### Native library installation
+### Installation/Uninstallation
 
 Installation of this library is included as an optional step in the root `install.sh`.  
 It can be also initiated manually, by executing
@@ -14,26 +14,32 @@ sudo ./install.sh
 ```
 
 from the current directory (`${workspaceFolder}/daqhats-java`).  
+After this step, JNI native shared library is installed under `/usr/local/lib` on your Raspberry PI and Java API library is installed to your PI's local Maven repository.  
+
 Correspondingly, Java library uninstallation is performed by
 
 ```bash
 sudo ./uninstall.sh
 ```
 
-### Maven dependency installation
+### Running examples
 
-After the installation step, JNI native shared library is installed under `usr/local/lib` on your Raspberry PI.  
+Java examples are located under `${workspaceFolder}/examples/java` directory. Each class can be launched or debugged from VSCode.
 
-Before you can use the Java library API in your project it has to be installed locally as a Maven dependency **on the computer you write code**.  
+## On development PC
+
+### Install Maven dependency to local Maven repo
+
+Before you can use the Java library API in your own project it has to be installed locally as a Maven dependency **on the computer you write code**.  
 Execute the following from the current directory (`${workspaceFolder}/daqhats-java`):  
 
 ```bash
 mvn clean install
 ```
 
-## Usage
+### Add Maven dependency
 
-To use it in your local Java Maven project, just add the following dependency to the pom.xml:
+To use the library in your local Java Maven project, just add the following dependency to the pom.xml:
 
 ```xml
     <dependency>

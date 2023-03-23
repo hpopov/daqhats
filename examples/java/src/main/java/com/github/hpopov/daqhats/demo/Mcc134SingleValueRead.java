@@ -8,7 +8,7 @@ import com.github.hpopov.daqhats.ThermoCoupleHat;
 import com.github.hpopov.daqhats.ThermoCoupleType;
 import com.github.hpopov.daqhats.ThermoCoupleValue;
 
-public class SingleValueRead {
+public class Mcc134SingleValueRead {
 
     public static void main(String[] args) throws InterruptedException, IOException {
         ThermoCoupleType thermoCoupleType = ThermoCoupleType.J;
@@ -17,6 +17,7 @@ public class SingleValueRead {
         System.out.println("\nMCC 134 single data value read example");
         System.out.println("    Function demonstrated: mcc134_t_in_read");
         System.out.println("    Thermocouple type: " + thermoCoupleType);
+
         TCHatId[] connectedHatIds = TCHatId.findConnectedHats();
         if (connectedHatIds.length == 0) {
             System.out.println("No connected Hats found. Exiting now...");
