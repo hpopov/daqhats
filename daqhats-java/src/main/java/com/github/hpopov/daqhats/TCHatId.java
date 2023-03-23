@@ -8,12 +8,6 @@ public class TCHatId {
         System.loadLibrary("daqhats-java");
     }
 
-    public static void main(String[] args) {
-        for (TCHatId hatId : findConnectedHats()) {
-            System.out.println(hatId.address);
-        }
-    }
-
     public static TCHatId[] findConnectedHats() {
         return IntStream.of(findConnectedMcc134HatsAddresses())
                 .mapToObj(TCHatId::new)
